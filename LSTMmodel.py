@@ -35,7 +35,7 @@ class Dataset(torch.utils.data.Dataset):
         )
 
 class LSTMModel(nn.Module):
-    def __init__(self, dataset, model_path="model2.pth"):
+    def __init__(self, dataset, model_path="model.pth"):
         super(LSTMModel, self).__init__()
         self.n_layers = 6
         self.n_lstm = 128
@@ -49,40 +49,9 @@ class LSTMModel(nn.Module):
         self.model_path = model_path
         try:
             self.load_state_dict(torch.load(model_path))
+            print(f"Model loaded at location {model_path}")
         except:
-            pass
-    def forward(self, x, prev_state):
-        y = self.embedding(x)
-        output, state = self.lstm(y, prev_state)
-        logits = self.fc(output)
-        return logits, state
-    
-    def _init_state(self, seq_length):
-        return(torch.zeros(self.n_layers,seq_length,self.n_lstm),torch.zeros(self.n_layers,seq_length,self.n_lstm))
-
-class LSTMStack(nn.Module):
-    def __init__(self, dataset, model_path="model2stack.pth"):
-        super(LSTMStack, self).__init__()
-        self.n_layers = 6
-        self.n_lstm = 128
-        self.embedding_dim = 128
-        self.dropout = 0.2
-        n_vocab = len(dataset.vocab)
-
-        self.embedding = nn.Embedding(num_embeddings=n_vocab,embedding_dim=self.embedding_dim)
-        self.lstm = nn.LSTM(input_size=self.n_lstm,hidden_size=self.n_lstm,num_layers=self.n_layers,dropout=self.dropout)
-        self.fc = nn.Sequential(
-            nn.Linear(self.n_lstm,512),
-            nn.ReLU(),
-            nn.Linear(512, 512),
-            nn.ReLU(),
-            nn.Linear(512,n_vocab)
-        )
-        self.model_path = model_path
-        try:
-            self.load_state_dict(torch.load(model_path))
-        except:
-            pass
+            print("Initalizing new model")
     def forward(self, x, prev_state):
         y = self.embedding(x)
         output, state = self.lstm(y, prev_state)
@@ -141,11 +110,3 @@ def generate(dataset,model,input_text,n_words):
         index = np.random.choice(len(topk_index), p = topk_values.numpy())
         text.append(dataset.index_to_word[topk_index[index].item()])
     return text
-
-dataset = Dataset()
-model = LSTMModel(dataset)
-
-while True:
-    for chunk in generate(dataset,model,input_text=input("\nEnter Text: "), n_words=100):
-        print(chunk,end=" ")
-    
