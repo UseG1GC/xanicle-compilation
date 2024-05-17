@@ -11,6 +11,6 @@ Other datasets\
 Transformer text generation\
 idk optimize stuff
 # Requirements
-```pip install pytorch numpy```
+```pip install pytorch numpy```\
 python\
 a computer
