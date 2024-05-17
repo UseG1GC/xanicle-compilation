@@ -1,11 +1,11 @@
-#Pytorch Text Generation
+# Pytorch Text Generation
 Minimal example of text generation using LSTMs and Transformers\
 G1GC's submission to Optimize
-#Usage
+# Usage
 Run modeltrain.py to train a new model\
 Run LSTMgenerate.py to generate text\
 Run transformerModel.py to train a new transformer model
-#Todo
+# Todo
 CUDA support\
 Other datasets\
 Transformer text generation\
