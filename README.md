@@ -10,3 +10,8 @@ CUDA support\
 Other datasets\
 Transformer text generation\
 idk optimize stuff
+# Requirements
+pytorch\
+numpy\
+python\
+a computer
