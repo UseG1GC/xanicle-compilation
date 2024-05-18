@@ -17,7 +17,7 @@ class Dataset(torch.utils.data.Dataset):
         self.data = [self.word_to_index[w] for w in self.words]
 
     def load_words(self):
-        data = pd.read_parquet("data.parquet")
+        data = pd.read_parquet("data/data.parquet")
         text = data["text"].str.cat(sep=" ")
         return text.split(" ")
         
@@ -39,9 +39,11 @@ class EvalData(torch.utils.data.Dataset):
         self.data = self.load_words()
     
     def load_words(self):
-        data = pd.read_parquet("eval.parquet")
+        data = pd.read_parquet("data/eval.parquet")
         text = data["text"].str.cat(sep=" ")
         text = text.split(" ")
+        output = [self.word_to_index[w] for w in text]
+        return output
 
     def __len__(self):
         return len(self.data) - self.sequence_length
