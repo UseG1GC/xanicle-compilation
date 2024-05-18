@@ -144,7 +144,7 @@ def train_loop(model, dataset,batch_size=1024,max_epochs=5):
             print(f"Epoch: {str(epoch)},Batch: {str(batch)}, Loss: {str(loss.item())}")
             torch.save(model.state_dict(),model.path)
 
-        eval_loss = eval(model,eval_data)
+        eval_loss = eval(model,eval_data,batch_size)
         print(f"Average loss for epoch {epoch} : {eval_loss}")
 
 dataset = Dataset()
