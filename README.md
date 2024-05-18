@@ -1,5 +1,5 @@
 # Pytorch Text Generation
-Minimal example of text generation using LSTMs and Transformers\
+Example of text generation using LSTMs and Transformers\
 \
 **G1GC's submission to Optimize (High school category)**
 # Usage
