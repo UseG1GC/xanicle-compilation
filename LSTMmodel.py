@@ -14,7 +14,7 @@ class Dataset(torch.utils.data.Dataset):
         self.index_to_word = {index: word for index, word in enumerate(self.vocab)}
         self.word_to_index = {word: index for index, word in enumerate(self.vocab)}
 
-        self.words_indexes = [self.word_to_index[w] for w in self.words]
+        self.data = [self.word_to_index[w] for w in self.words]
 
     def load_words(self):
         data = pd.read_parquet("data.parquet")
@@ -30,8 +30,8 @@ class Dataset(torch.utils.data.Dataset):
 
     def __getitem__(self, i):
         return(
-            torch.tensor(self.words_indexes[i:i+self.sequence_length]),
-            torch.tensor(self.words_indexes[i+1:i+self.sequence_length+1]),
+            torch.tensor(self.data[i:i+self.sequence_length]),
+            torch.tensor(self.data[i+1:i+self.sequence_length+1]),
         )
 
 class LSTMModel(nn.Module):
