@@ -6,7 +6,7 @@ Example of text generation using LSTMs and Transformers\
 Model trained on the ```wikitext-2``` dataset\
 Decoder only transformer
 * 10 layers
-* 8 attention heads
+* 8 attention heads\
 LSTM
 * 6 layers
 # Usage
