@@ -5,18 +5,10 @@ from discord.ext import commands
 import os
 from pytube import YouTube
 from dotenv import load_dotenv
-
-
 import json 
-
 
 with open('themes.json', 'r') as file:
     themes = json.load(file) 
-
-
-
-
- 
 
 load_dotenv()
 
@@ -40,7 +32,6 @@ Token = os.getenv('DISCORD_TOKEN')
 
 voice = pyttsx3.init()
 voice.setProperty('rate',150)
-
 
 @client.event
 async def on_ready():
@@ -80,14 +71,6 @@ async def on_message(message):
             await message.reply(reply)
         else:
             await message.reply("Blop")
-    
-
-    
-
-
-
-    
-
 
 @client.event
 async def on_voice_state_update(member, before, after):
@@ -114,7 +97,6 @@ async def on_voice_state_update(member, before, after):
         stream = video.streams.filter(only_audio=True).first()
         stream.download(filename=f"theme.mp3")
         
-
         ffmpeg_options = {'options': '-vn'}
         source = discord.FFmpegPCMAudio('theme.mp3', executable="ffmpeg", options=ffmpeg_options)
         if voice_client.is_playing():
@@ -126,12 +108,6 @@ async def on_voice_state_update(member, before, after):
             themes = json.load(file) 
     elif(after.channel != None):
         print(f"{member} is a USER WITHOUT THEME THAT HAS JOINED")
-
-
-
-
-    
-
 
 
 @tree.command(name='sync', description='Owner only')
@@ -212,14 +188,9 @@ async def search(interaction: discord.Interaction, speech: str, volume: float):
         await interaction.followup.send("Please wait until the 🐟 has spoken!")
 
 
-
-
-
 @tree.command(name="play",description = "make 🐟 play music")
 async def music(interaction: discord.Interaction, url : str):
 
-
-    
     if interaction.user.voice is None:
         await interaction.response.send_message("You are not connected to a voice channel.")
         return
@@ -298,44 +269,5 @@ async def theme(interaction: discord.Interaction, url : str):
     with open("themes.json", "w") as outfile:
         json.dump(themes, outfile)
     await interaction.response.send_message(f"🐟 has successfully changed {author}'s theme")
-    
 
-
-    
-
-
-    
-
-    
 client.run(Token)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
