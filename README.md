@@ -1,4 +1,4 @@
-# Pytorch Text Generation + Fish AI
+# Pytorch Text Generation
 Example of text generation using LSTMs and Transformers\
 \
 **G1GC's submission to Optimize (High school category)**
