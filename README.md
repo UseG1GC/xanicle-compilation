@@ -20,8 +20,7 @@ Decoder only transformer
     pip install torch torchvision torchaudio numpy
 python\
 a computer (very important)
-#  Fish Bot
-The 🐟 is 🐟ing\
+#  🐟 Bot
 Me when 🐟
 ## Overview of 🐟
  - Fisherman (🐟🐟🐟)
@@ -30,6 +29,8 @@ Me when 🐟
  - Fishy Stalker
  - Hates Mad AI
  - Schizoprenic chatbot (talks to itself 🐟)
+ - deletes bad messages (Don't send that again!)
+ - Deletes messages that ping ProperDiamond (Don't disturb my fellow 🐟!)
 ## Info
  - API calls to 🐟hq
  - Discord.py
