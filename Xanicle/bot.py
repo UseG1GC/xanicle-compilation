@@ -40,9 +40,6 @@ async def on_ready():
 @client.event
 async def on_message(message):
     author = message.author.mention
-    if "nigger" in message.content or "nigga" in message.content or "nigglet" in message.content or "​" in message.content or "niǥǥa" in message.content:
-        await message.delete()
-        await message.channel.send(f"Don't send that again! {author}")
     
     if "<@417216848720035862>" in message.content:
         await message.delete()
