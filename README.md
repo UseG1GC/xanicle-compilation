@@ -37,3 +37,5 @@ Me when 🐟
 ## To-do
  - Make 🐟 slightly less schizoprenic
  - Actually fix fish
+ - Make 🐟 not mentally insane
+ - rescue 🐟 from mental asylum
