@@ -1,11 +1,10 @@
 import discord
 from discord import app_commands
 import discord.ext
-from discord.ext import commands
 import os
-from pytube import YouTube
 from dotenv import load_dotenv
 import json 
+import yt_dlp
 
 with open('themes.json', 'r') as file:
     themes = json.load(file) 
@@ -84,15 +83,18 @@ async def on_voice_state_update(member, before, after):
         await voice_client.disconnect()
 
     if str(member.id) in themes and voice_client and after.channel != None:
-        video = YouTube(themes[str(member.id)])
-        stream = video.streams.filter(only_audio=True).first()
-        stream.download(filename=f"theme.mp3")
+        url = themes[str(member.id)]
         
         ffmpeg_options = {'options': '-vn'}
-        source = discord.FFmpegPCMAudio('theme.mp3', executable="ffmpeg", options=ffmpeg_options)
+        ydl_opts = {'format': 'bestaudio'}
+
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl: #extract raw url of video
+            song_info = ydl.extract_info(url, download=False)
+
+        source = discord.FFmpegPCMAudio(song_info["url"], executable="ffmpeg", options=ffmpeg_options)
         if voice_client.is_playing():
             voice_client.pause()
-        voice_client.play(source,after=lambda e: os.remove('theme.mp3'))
+        voice_client.play(source)
         print("PLAYING")
         
         with open('themes.json', 'r') as file:
@@ -195,13 +197,13 @@ async def music(interaction: discord.Interaction, url : str):
     else:
         voice_client = await voice_channel.connect()
 
-    video = YouTube(url)
-    stream = video.streams.filter(only_audio=True).first()
-    stream.download(filename=f"music.mp3")
-
-
     ffmpeg_options = {'options': '-vn'}
-    source = discord.FFmpegPCMAudio('music.mp3', executable="ffmpeg", options=ffmpeg_options)
+    ydl_opts = {'format': 'bestaudio'}
+
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl: #extract raw url of video
+        song_info = ydl.extract_info(url, download=False)
+
+    source = discord.FFmpegPCMAudio(song_info["url"], executable="ffmpeg", options=ffmpeg_options)
     author = interaction.user.mention
 
     if not voice_client.is_playing():
