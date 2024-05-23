@@ -3,6 +3,7 @@ from discord import app_commands
 import discord.ext
 import os
 from dotenv import load_dotenv
+from fish import Fish
 import json 
 import yt_dlp
 
@@ -12,7 +13,6 @@ with open('themes.json', 'r') as file:
 load_dotenv()
 
 import pyttsx3
-import requests
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -20,6 +20,8 @@ client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 timeout = None
 queues = {}
+
+fish = Fish("http://localhost/api/chat", "You are a fish.")
 
 Token = os.getenv('DISCORD_TOKEN')
 
@@ -39,23 +41,8 @@ async def on_message(message):
         await message.channel.send(f"Don't disturb my fellow 🐟! {author}")
     
     if client.user.mentioned_in(message):
-        url = 'http://localhost/api/chat'
         payload = message.content.replace("<@1199290199985901589>", "")
-        data = {
-            "model": "Fish:1.5",
-            "messages": [
-                {
-                    "role": "user",
-                    "content": f"{payload}"
-                }
-            ],
-            "stream": False
-        }
-
-        response = requests.post(url, json=data)
-        dict = response.json()
-        reply = dict["message"]["content"]
-        print(reply)
+        reply = fish.generate(payload)
 
         if payload != "":
             await message.reply(reply)
