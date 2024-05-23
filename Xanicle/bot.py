@@ -40,7 +40,7 @@ async def on_message(message):
         await message.channel.send(f"Don't disturb my fellow 🐟! {author}")
     
     if client.user.mentioned_in(message):
-        url = 'http://192.168.1.115:11434/api/chat'
+        url = 'http://localhost/api/chat'
         payload = message.content.replace("<@1199290199985901589>", "")
         data = {
             "model": "Fish:1.5",
@@ -58,7 +58,7 @@ async def on_message(message):
         reply = dict["message"]["content"]
         print(reply)
 
-        if payload:
+        if payload != "":
             await message.reply(reply)
         else:
             await message.reply("Blop")
