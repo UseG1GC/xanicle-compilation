@@ -39,6 +39,11 @@ Me when 🐟
  - Actually fix fish
  - Make 🐟 not mentally insane
  - rescue 🐟 from mental asylum
+## Requirements
+    pip3 install discord python-dotenv yt_dlp pyttsx3
+a computer (very important)\
+working internet (also very important)\
+python3.9+
 # XANICLE
 An AI that we should hopefully program to play mc\
 \
