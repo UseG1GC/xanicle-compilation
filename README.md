@@ -39,3 +39,15 @@ Me when 🐟
  - Actually fix fish
  - Make 🐟 not mentally insane
  - rescue 🐟 from mental asylum
+# XANICLE
+An AI that we should hopefully program to play mc\
+\
+Xanicle worst bot ngl
+## Info
+Do something idk
+## To-do
+ - Hitcrystal idk
+ - pathfinding
+ - anchor spam
+ - toteming
+ - literally everything
