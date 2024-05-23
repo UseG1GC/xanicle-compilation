@@ -12,14 +12,8 @@ with open('themes.json', 'r') as file:
 
 load_dotenv()
 
-import re
-import nacl
 import pyttsx3
 import requests
-
-import asyncio
-import ctypes
-import urllib
 
 intents = discord.Intents.default()
 intents.message_content = True
