@@ -21,7 +21,7 @@ tree = app_commands.CommandTree(client)
 timeout = None
 queues = {}
 
-fish = Fish("http://localhost/api/chat", "You are a fish.")
+bot = Fish("http://localhost/api/chat", "You are a fish.")
 
 Token = os.getenv('DISCORD_TOKEN')
 
@@ -42,7 +42,7 @@ async def on_message(message):
     
     if client.user.mentioned_in(message):
         payload = message.content.replace("<@1199290199985901589>", "")
-        reply = fish.generate(payload)
+        reply = bot.generate(payload)
 
         if payload != "":
             await message.reply(reply)
