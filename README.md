@@ -20,6 +20,15 @@ Decoder only transformer
     pip install torch torchvision torchaudio numpy
 python\
 a computer (very important)
+# Mad AI
+Me when Mad AI
+## Overview
+ - Music bot with actual queue system
+ - math question bot
+ - Makes people very angry
+ - loads of random stuff
+ - Schizoprenic chatbot (Slightly more sane than 🐟)
+ - Best bot
 #  🐟 Bot
 Me when 🐟
 ## Overview of 🐟
