@@ -251,4 +251,8 @@ async def theme(interaction: discord.Interaction, url : str):
         json.dump(themes, outfile)
     await interaction.response.send_message(f"🐟 has successfully changed {author}'s theme")
 
+@tree.command(name = "stupidity", description="Start Fish AI's stupidity")
+async def stupidity(interaction: discord.Interaction,scenario : str):
+    pass
+
 client.run(Token)
