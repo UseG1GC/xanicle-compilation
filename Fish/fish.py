@@ -40,3 +40,6 @@ class Judge:
         if len(self.messages) > self.limit:
             del self.messages[1:2]
         return reply
+
+    def scenario(self, message):
+        self.messages[0]["content"] = f"{self.sysmessage}\n\nScenario: {message}"

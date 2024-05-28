@@ -253,6 +253,7 @@ async def theme(interaction: discord.Interaction, url : str):
 
 @tree.command(name = "stupidity", description="Start Fish AI's stupidity")
 async def stupidity(interaction: discord.Interaction,scenario : str):
-    pass
+    judge.scenario(scenario)
+    await interaction.response.send_message("🐟 has started being stupid\n\nWhat do you want to do:")
 
 client.run(Token)
