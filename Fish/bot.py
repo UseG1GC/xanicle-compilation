@@ -3,7 +3,7 @@ from discord import app_commands
 import discord.ext
 import os
 from dotenv import load_dotenv
-from fish import Fish
+from fish import *
 import json 
 import yt_dlp
 
@@ -22,6 +22,7 @@ timeout = None
 queues = {}
 
 bot = Fish("http://localhost/api/chat", "You are a fish.")
+judge = Judge("http://localhost/api/chat")
 
 Token = os.getenv('DISCORD_TOKEN')
 
