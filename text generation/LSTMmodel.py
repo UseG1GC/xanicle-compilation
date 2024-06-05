@@ -97,13 +97,14 @@ def train_loop(dataset,initial_model,batch_size=1024,seq_length=32,max_epochs=50
         print("Model Saved!")
 
 def generate(dataset,model,input_text,n_words):
-    text = input_text.split(" ")
+    text = dataset.vocab.tokenize(input_text)
+    decoder = dataset.vocab.decoder()
     model.eval()
 
     a, b = model._init_state(len(text))
 
     for i in range(0,n_words):
-        x = torch.tensor([[dataset.word_to_index[w] for w in text[i:]]])
+        x = torch.tensor(text)
         y_prediction, (a, b) = model(x, (a,b))
 
         output = y_prediction[0][-1]
@@ -111,5 +112,5 @@ def generate(dataset,model,input_text,n_words):
         topk_values = torch.nn.functional.softmax(torch.topk(logits,40).values,dim=0).detach()
         topk_index = torch.topk(logits,40).indices
         index = np.random.choice(len(topk_index), p = topk_values.numpy())
-        text.append(dataset.index_to_word[topk_index[index].item()])
-    return text
+        text.append(topk_index[index].item())
+    return decoder.decode(text)
