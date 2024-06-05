@@ -61,3 +61,43 @@ class mLSTMCell(nn.Module):
         h_t = nn.Conv1d(o_t,h_tilda)
 
         return h_t, (c_t,n_t)
+
+class mLSTM(nn.Module):
+    def __init__(self, n_lstm, n_layers, dim, dropout):
+        super(mLSTM, self).__init__()
+        self.layers = nn.ModuleList([mLSTMCell(n_lstm,n_lstm,dim) for _ in range(n_layers)])
+        self.dropout = nn.Dropout(dropout)
+    
+    def forward(self, x, state):
+        x = self.dropout(x)
+        c,n = state
+        for layer in self.layers:
+            x, (c,n) = layer(x,(c,n))
+        return x, (c,n)
+
+class xLSTMModel(nn.Module):
+    def __init__(self, dataset, model_path="xLSTMmodel.pth"):
+        super(xLSTMModel, self).__init__()
+        self.n_layers = 16
+        self.n_lstm = 512
+        self.dropout = 0.2
+        self.n_vocab = len(dataset.vocab)
+        self.embedding = nn.Embedding(num_embeddings=self.n_vocab,embedding_dim=self.n_lstm)
+        self.lstm = mLSTM(n_lstm=self.n_lstm,n_layers=self.n_layers,dim=self.n_lstm,dropout=self.dropout)
+        self.fc = nn.Linear(self.n_lstm,self.n_vocab)
+        self.model_path = model_path
+
+        try:
+            self.load_state_dict(torch.load(model_path))
+            print(f"Model loaded at location {model_path}")
+        except:
+            print("Model not found, initializing new model")
+    
+    def forward(self, x, prev_state):
+        y = self.embedding(x)
+        output, state = self.lstm(y, prev_state)
+        logits = self.fc(output)
+        return logits, state
+    
+    def _init_state(self, seq_length):
+        return(torch.zeros(self.n_layers,seq_length,self.n_lstm),torch.zeros(self.n_layers,seq_length,self.n_lstm))
