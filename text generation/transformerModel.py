@@ -4,52 +4,31 @@ from torch import nn, optim
 from torch.utils.data import DataLoader
 from collections import Counter
 import math
+import tokenmonster
 
 class Dataset(torch.utils.data.Dataset):
-    def __init__(self, sequence_length=8):
+    def __init__(self, sequence_length=32):
+        self.vocab = tokenmonster.load("english-24000-consistent-v1")
         self.sequence_length=sequence_length
         self.words = self.load_words()
-        self.vocab = self.load_vocab()
-
-        self.index_to_word = {index: word for index, word in enumerate(self.vocab)}
-        self.word_to_index = {word: index for index, word in enumerate(self.vocab)}
-
-        self.data = [self.word_to_index[w] for w in self.words]
 
     def load_words(self):
-        data = pd.read_parquet("data/data.parquet")
-        text = data["text"].str.cat(sep=" ")
-        return text.split(" ")
-        
-    def load_vocab(self):
-        word_counts = Counter(self.words)
-        return sorted(word_counts, key=word_counts.get, reverse=True)
-    
-    def __len__(self):
-        return len(self.data) - self.sequence_length
-
-    def __getitem__(self, i):
-        return (torch.tensor(self.data[i:i+self.sequence_length]),torch.tensor(self.data[i+1:i+self.sequence_length+1]))
-
-class EvalData(torch.utils.data.Dataset):
-    def __init__(self, train_data):
-        self.sequence_length = train_data.sequence_length
-        self.index_to_word = train_data.index_to_word
-        self.word_to_index = train_data.word_to_index
-        self.data = self.load_words()
-    
-    def load_words(self):
-        data = pd.read_parquet("data/eval.parquet")
-        text = data["text"].str.cat(sep=" ")
-        text = text.split(" ")
-        output = [self.word_to_index[w] for w in text]
+        output = []
+        data = pd.read_parquet(f"data/data.parquet")
+        for chunk in data["text"]:
+            if len(chunk) > 0:
+                for i in self.vocab.tokenize(chunk):
+                    output.append(int(i))
         return output
-
+    
     def __len__(self):
-        return len(self.data) - self.sequence_length
+        return len(self.words) - self.sequence_length
 
     def __getitem__(self, i):
-        return (torch.tensor(self.data[i:i+self.sequence_length]),torch.tensor(self.data[i+1:i+self.sequence_length+1]))
+        return(
+            torch.tensor(self.words[i:i+self.sequence_length]),
+            torch.tensor(self.words[i+1:i+self.sequence_length+1]),
+        )
 
 class PositionalEncoding(nn.Module):
     def __init__(self, d_model, dropout=0.1, max_len=5000):
@@ -128,7 +107,6 @@ def train_loop(model, dataset,batch_size=1024,max_epochs=5):
     optimizer = optim.Adam(model.parameters(), lr=lr)
 
     training_data = DataLoader(dataset=dataset,batch_size=batch_size)
-    eval_data = DataLoader(dataset=EvalData(dataset),batch_size=batch_size)
 
     for epoch in range(max_epochs):
         for batch, (x,y) in enumerate(training_data):
@@ -145,9 +123,6 @@ def train_loop(model, dataset,batch_size=1024,max_epochs=5):
             optimizer.step()
             print(f"Epoch: {str(epoch)},Batch: {str(batch)}, Loss: {str(loss.item())}")
             torch.save(model.state_dict(),model.path)
-
-        eval_loss = eval(model,eval_data,batch_size)
-        print(f"Average loss for epoch {epoch} : {eval_loss}")
 
 dataset = Dataset()
 model = TransformerModel(dataset=dataset)
