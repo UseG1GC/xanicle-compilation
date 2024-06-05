@@ -61,19 +61,3 @@ class mLSTMCell(nn.Module):
         h_t = nn.Conv1d(o_t,h_tilda)
 
         return h_t, (c_t,n_t)
-
-class xLSTM(nn.Module):
-    def __init__(self,input_dim,input_size,hidden_size,num_layers):
-        super(xLSTM, self).__init__()
-
-        self.layers = nn.ModuleList(
-            [
-                mLSTMCell(
-                    input_size if i == 0 else hidden_size, hidden_size, input_dim
-                )
-                for i in range(num_layers)
-            ]
-        )
-    
-    def forward(self,x,state):
-        pass
