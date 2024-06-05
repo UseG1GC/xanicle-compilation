@@ -10,19 +10,12 @@ class mLSTMCell(nn.Module):
         self.hidden_size = hidden_size
         self.dim = dim
 
-        self.w_q = nn.Parameter(torch.Tensor(hidden_size, input_size))
-        self.w_k = nn.Parameter(torch.Tensor(hidden_size, input_size))
-        self.w_v = nn.Parameter(torch.Tensor(hidden_size, input_size))
-        self.w_i = nn.Parameter(torch.Tensor(hidden_size, input_size))
-        self.w_f = nn.Parameter(torch.Tensor(hidden_size, input_size))
-        self.w_o = nn.Parameter(torch.Tensor(hidden_size, input_size))
-
-        self.b_i = nn.Parameter(torch.Tensor(hidden_size))
-        self.b_f = nn.Parameter(torch.Tensor(hidden_size))
-        self.b_o = nn.Parameter(torch.Tensor(hidden_size))
-        self.b_z = nn.Parameter(torch.Tensor(hidden_size))
-        self.b_q = nn.Parameter(torch.Tensor(hidden_size))
-        self.b_v = nn.Parameter(torch.Tensor(hidden_size))
+        self.w_q = nn.Linear(hidden_size, input_size)
+        self.w_k = nn.Linear(hidden_size, input_size)
+        self.w_v = nn.Linear(hidden_size, input_size)
+        self.w_i = nn.Linear(hidden_size, input_size)
+        self.w_f = nn.Linear(hidden_size, input_size)
+        self.w_o = nn.Linear(hidden_size, input_size)
 
     def init_weights(self):
         nn.init.xavier_uniform_(self.w_q)
@@ -42,23 +35,23 @@ class mLSTMCell(nn.Module):
     def forward(self, x_t, state):
         c_prev, n_prev = state
 
-        q_t = torch.matmul(self.w_q,x_t) + self.b_q
-        k_t = torch.matmul(self.w_k,x_t) / math.sqrt(self.dim) + self.b_k
-        v_t = torch.matmul(self.w_v,x_t) + self.b_v
+        q_t = self.w_q(x_t)
+        k_t = self.w_k(x_t) / math.sqrt(self.dim)
+        v_t = self.w_v(x_t)
 
-        i_tilda = torch.matmul(self.w_i,x_t) + self.b_i
-        f_tilda = torch.matmul(self.w_f,x_t) + self.b_f
-        o_tilda = torch.matmul(self.w_o,x_t) + self.b_o
+        i_tilda = self.w_i(x_t)
+        f_tilda = self.w_f(x_t)
+        o_tilda = self.w_o(x_t)
 
         i_t = torch.exp(i_tilda)
-        f_t = nn.Sigmoid(f_tilda)
-        o_t = nn.Sigmoid(o_tilda)
+        f_t = torch.sigmoid(f_tilda)
+        o_t = torch.sigmoid(o_tilda)
 
-        c_t = torch.matmul(f_t,c_prev) + torch.matmul(i_t,torch.matmul(v_t,k_t))
-        n_t = torch.matmul(f_t,n_prev) + torch.matmul(i_t,k_t)
+        c_t = torch.multiply(f_t,c_prev) + torch.multiply(i_t,torch.multiply(v_t,k_t))
+        n_t = torch.multiply(f_t,n_prev) + torch.multiply(i_t,k_t)
 
-        h_tilda = torch.matmul(c_t,q_t) / max(torch.abs(torch.matmul(n_t,q_t)),1)
-        h_t = nn.Conv1d(o_t,h_tilda)
+        h_tilda = torch.multiply(c_t,q_t) / max(torch.abs(torch.multiply(n_t,q_t)),1)
+        h_t = torch.conv1d(o_t,h_tilda)
 
         return h_t, (c_t,n_t)
 
@@ -68,12 +61,24 @@ class mLSTM(nn.Module):
         self.layers = nn.ModuleList([mLSTMCell(n_lstm,n_lstm,dim) for _ in range(n_layers)])
         self.dropout = nn.Dropout(dropout)
     
-    def forward(self, x, state):
+    def forward(self, x, init_state):
+        bs, seq_len, _ = x.size()
         x = self.dropout(x)
-        c,n = state
-        for layer in self.layers:
-            x, (c,n) = layer(x,(c,n))
-        return x, (c,n)
+        outputs = []
+        current_states = init_state
+        for t in range(seq_len):
+            x_t = x[:, t, :]
+            new_states = []
+            for layer, state in zip(self.layers, current_states):
+                h_t, new_state = layer(x_t, state)
+                new_states.append(new_state)
+                x_t = h_t
+            outputs.append(h_t.unsqueeze(1))
+            current_states = new_states
+
+        outputs = torch.cat(outputs, dim=1)
+        return outputs, current_states
+
 
 class xLSTMModel(nn.Module):
     def __init__(self, dataset, model_path="xLSTMmodel.pth"):
