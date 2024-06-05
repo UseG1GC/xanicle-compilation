@@ -1,4 +1,5 @@
 from LSTMmodel import *
+from trainfunc import *
 
 seq_length = 32
 

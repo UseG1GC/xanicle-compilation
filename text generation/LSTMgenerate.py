@@ -1,4 +1,5 @@
 from LSTMmodel import *
+from trainfunc import *
 
 dataset = Dataset()
 model = LSTMModel(dataset=dataset)
