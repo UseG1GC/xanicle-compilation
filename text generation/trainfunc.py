@@ -4,7 +4,7 @@ from torch import nn, optim
 from torch.utils.data import DataLoader
 
 def train_loop(dataset,initial_model,batch_size=1024,seq_length=32,max_epochs=50):
-    model = initial_model
+    model = torch.compile(initial_model)
 
     model.train()
 
