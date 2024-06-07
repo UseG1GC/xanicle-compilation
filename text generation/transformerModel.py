@@ -2,7 +2,6 @@ import torch
 import pandas as pd
 from torch import nn, optim
 from torch.utils.data import DataLoader
-from collections import Counter
 import math
 import tokenmonster
 
