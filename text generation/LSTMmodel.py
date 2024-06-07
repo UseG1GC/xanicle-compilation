@@ -1,8 +1,6 @@
 import torch
-import numpy as np
 import pandas as pd
-from torch import nn, optim
-from torch.utils.data import DataLoader
+from torch import nn
 import tokenmonster
 
 class Dataset(torch.utils.data.Dataset):
