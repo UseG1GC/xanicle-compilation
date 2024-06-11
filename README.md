@@ -1,3 +1,5 @@
+# Xanicle Compilation
+A few (very bad) python projects.
 # Pytorch Text Generation
 Example of text generation using LSTMs and Transformers\
 \
