@@ -21,7 +21,7 @@ Decoder only transformer
 python\
 a computer (very important)
 # Mad AI
-Me when Mad AI
+Mad AI has caused us to be 20 million dollars in debt pls donate
 ## Overview
  - Music bot with actual queue system
  - math question bot
