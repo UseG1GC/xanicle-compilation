@@ -56,7 +56,7 @@ a computer (very important)\
 working internet (also very important)\
 python3.9+
 # XANICLE
-An AI that we should hopefully program to play mc\
+An AI that we should hopefully train to play crystal pvp\
 \
 Xanicle worst bot ngl
 ## Info
