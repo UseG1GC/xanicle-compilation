@@ -31,6 +31,11 @@ Mad AI has caused us to be 20 million dollars in debt pls donate
  - loads of random stuff
  - Schizoprenic chatbot (Slightly more sane than 🐟)
  - Best bot
+## To-do
+ - Make Mad AI actually respond
+ - Make it not take 2 eons to send 1 message
+ - Rescue Mad AI from the Institution of the Clinically Deranged
+ - Actually fix Mad AI
 #  🐟 Bot
 Me when 🐟 blows up ProperDiamond's gpu
 ## Overview of 🐟
