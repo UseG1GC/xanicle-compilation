@@ -21,8 +21,8 @@ tree = app_commands.CommandTree(client)
 timeout = None
 queues = {}
 
-bot = Fish("http://localhost/api/chat", "You are a fish.")
-judge = Judge("http://localhost/api/chat")
+bot = Fish("http://192.168.1.115:11434/api/chat", "You are a fish.")
+judge = Judge("http://192.168.1.115:11434/api/chat")
 
 Token = os.getenv('DISCORD_TOKEN')
 
@@ -70,7 +70,7 @@ async def on_voice_state_update(member, before, after):
         print(f"Disconnecting from {voice_client.channel} as it is empty.")
         await voice_client.disconnect()
 
-    if str(member.id) in themes and voice_client and after.channel != None:
+    if str(member.id) in themes and voice_client and after.channel != None and after.channel:
         url = themes[str(member.id)]
         
         ffmpeg_options = {'options': '-vn'}
@@ -255,5 +255,10 @@ async def theme(interaction: discord.Interaction, url : str):
 async def stupidity(interaction: discord.Interaction,scenario : str):
     judge.scenario(scenario)
     await interaction.response.send_message("🐟 has started being stupid\n\nWhat do you want to do:")
+
+
+@tree.command(name="fight", description = "Start Fish AI's 1v1 with Mad AI")
+async def fight(interaction: discord.Interaction):
+    await interaction.response.send_message(f"<@1199215459782893569> is a baldy mcbaldy")
 
 client.run(Token)
