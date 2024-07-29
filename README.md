@@ -68,9 +68,9 @@ Xanicle worst bot ngl
 Xaniclebot is HT1\
 Too bad xanicle is LT5\
 Use to set the amount of totems the bot has access to:\
-    /scoreboard players set xaniclebot bot_totems <value>
+```/scoreboard players set xaniclebot bot_totems <value>```\
 Use to set the difficulty of the bot:\
-    /function xanicle:presets/<preset>
+```/function xanicle:presets/<preset>```\
 Presets:
  - Fish (canonically accurate Properdiamond)
  - Xanicle (Plays similar to actual xanicle, roughly HT3 skill)
