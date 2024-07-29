@@ -61,11 +61,23 @@ a computer (very important)\
 working internet (also very important)\
 python3.9+
 # XANICLE
-An AI that we should hopefully train to play crystal pvp\
+A ~~AI~~ bot that we should hopefully ~~train~~ hardcode to play crystal pvp\
 \
 Xanicle worst bot ngl
 ## Info
-Do something idk
+Xaniclebot is HT1\
+Too bad xanicle is LT5\
+Use to set the amount of totems the bot has access to:\
+```/scoreboard players set xaniclebot bot_totems <value>```\
+Use to set the difficulty of the bot:\
+```/function xanicle:presets/<preset>```\
+Presets:
+ - Fish (canonically accurate Properdiamond)
+ - Xanicle (Plays similar to actual xanicle, roughly HT3 skill)
+ - Mwasher (Banned for CWing)
+ - Normal (Generic / "normal" playstyle, roughly LT2/HT2 skill)
+ - Evantii (Plays similar to evantii, roughtly HT1 skill)
+ - godxanicle / HT0 (Max setting)
 ## To-do
  - [x] Hitcrystal idk
  - [ ] pathfinding
