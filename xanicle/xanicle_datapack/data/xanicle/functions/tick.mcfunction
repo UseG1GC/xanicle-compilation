@@ -22,7 +22,7 @@ kill @e[type=endermite]
 effect give @a[tag=refill] saturation infinite 255 true
 execute as @a[tag=bot] at @s run function xanicle:totem/tick
 
-execute unless entity @a[tag=bot] positioned 1 130 8 run function xanicle:spawnbot
+# execute unless entity @a[tag=bot] positioned 1 130 8 run function xanicle:spawnbot
 execute at @a[tag=bot] run tp @a[tag=bot,scores={botState=-1}] 1 130 8
 function xanicle:end/tick
 effect give @a[tag=bot,scores={botState=-1}] resistance 1 255 true
