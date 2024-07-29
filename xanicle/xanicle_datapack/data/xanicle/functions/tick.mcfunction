@@ -15,7 +15,7 @@ scoreboard players remove @a[scores={swing_cd=1..}] swing_cd 1
 scoreboard players remove @a[scores={timer=1..}] timer 1
 function xanicle:crystal/refill
 
-execute as @a[tag=bot] at @s if entity @p[tag=!bot,gamemode=!spectator,distance=..3,nbt={HurtTime:0s}] if score @s flat_cd >= @s flat_cooldown run scoreboard players set @a[tag=bot] botState 2
+execute as @a[tag=bot] at @s if entity @p[tag=!bot,gamemode=!spectator,distance=..3,nbt={HurtTime:0s,isGrounded:1b}] if score @s flat_cd >= @s flat_cooldown run scoreboard players set @a[tag=bot] botState 2
 scoreboard players set @a[tag=bot,scores={botState=2}] flat_cd 0
 
 kill @e[type=endermite]
@@ -23,6 +23,6 @@ effect give @a[tag=refill] saturation infinite 255 true
 execute as @a[tag=bot] at @s run function xanicle:totem/tick
 
 # execute unless entity @a[tag=bot] positioned 1 130 8 run function xanicle:spawnbot
-execute at @a[tag=bot] run tp @a[tag=bot,scores={botState=-1}] 1 130 8
+# execute at @a[tag=bot] run tp @a[tag=bot,scores={botState=-1}] 1 130 8
 function xanicle:end/tick
 effect give @a[tag=bot,scores={botState=-1}] resistance 1 255 true
