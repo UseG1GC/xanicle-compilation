@@ -37,7 +37,7 @@ Mad AI has caused us to be 20 million dollars in debt pls donate
  - Rescue Mad AI from the Institution of the Clinically Deranged
  - Actually fix Mad AI
 #  🐟 Bot
-Me when 🐟 blows up ProperDiamond's gpu
+🐟 blows up ProperDiamond's gpu
 ## Overview of 🐟
  - Fisherman (🐟🐟🐟)
  - Text to speech
@@ -48,7 +48,7 @@ Me when 🐟 blows up ProperDiamond's gpu
  - deletes bad messages (Don't send that again!)
  - Deletes messages that ping ProperDiamond (Don't disturb my fellow 🐟!)
 ## Info
- - API calls to 🐟hq
+ - API calls to 🐟
  - Discord.py
 ## To-do
  - Make 🐟 slightly less schizoprenic
@@ -67,8 +67,10 @@ Xanicle worst bot ngl
 ## Info
 Do something idk
 ## To-do
- - Hitcrystal idk
- - pathfinding
- - anchor spam
- - toteming
- - literally everything
+ - [x] Hitcrystal idk
+ - [] pathfinding
+ - [x] anchor spam
+ - [x] toteming
+ - [x] pearling
+ - [x] sword gameplay
+ - [x] dtap
