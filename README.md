@@ -68,7 +68,7 @@ Xanicle worst bot ngl
 Do something idk
 ## To-do
  - [x] Hitcrystal idk
- - [] pathfinding
+ - [ ] pathfinding
  - [x] anchor spam
  - [x] toteming
  - [x] pearling
