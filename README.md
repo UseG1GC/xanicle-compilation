@@ -72,7 +72,7 @@ Use to set the amount of totems the bot has access to:\
 Use to set the difficulty of the bot:\
 ```/function xanicle:presets/<preset>```\
 Presets:
- - Fish (canonically accurate ProperDiamond)
+ - Fish (canonically accurate ProperDiamond, LT5)
  - Xanicle (Plays similar to actual xanicle, roughly HT3 skill)
  - Mwasher (Banned for CWing)
  - Normal (Generic / "normal" playstyle, roughly LT2/HT2 skill)
