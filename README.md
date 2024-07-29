@@ -67,10 +67,10 @@ Xanicle worst bot ngl
 ## Info
 Do something idk
 ## To-do
-~~ - [x] Hitcrystal idk~~
+ - [x] Hitcrystal idk
  - [ ] pathfinding
-~~ - [x] anchor spam~~
-~~ - [x] toteming~~
-~~ - [x] pearling~~
-~~ - [x] sword gameplay~~
-~~ - [x] dtap~~
+ - [x] anchor spam
+ - [x] toteming
+ - [x] pearling
+ - [x] sword gameplay
+ - [x] dtap
