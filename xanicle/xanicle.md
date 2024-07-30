@@ -26,6 +26,6 @@ Bot States:\
 3. Retoteming - bot does nothing except retotem. State set back to 3 after a short cooldown.
 When set to a value other than 0 ~ 3, xaniclebot does nothing.\
 \
-Bot Targets:
-0.targeting nearest obsidian block or possible location for obsidian
-1.Targeting player
+Bot Targets:\
+0.targeting nearest obsidian block or possible location for obsidian\
+1.Targeting player\
