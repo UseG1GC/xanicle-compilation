@@ -23,7 +23,7 @@ Bot States:\
 0. Sword PvP - only allows the bot to move forward and attack
 1. Normal / idle - allows the bot to place obsidian, crystal and anchors, as well as to pearl and pearl flash
 2. Hitcrystaling - allows the bot to hit its opponent. State only set when the bot is able to attack the opponent. State is set back to 1 after a short delay
-3. Retoteming - bot does nothing except retotem. State set back to 3 after a short cooldown.
+3. Retoteming - bot does nothing except retotem. State set back to 3 after a short cooldown.\
 When set to a value other than 0 ~ 3, xaniclebot does nothing.\
 \
 Bot Targets:\
