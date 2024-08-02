@@ -18,7 +18,7 @@ In order to manually control these variables, use:
     /scoreboard players set xaniclebot anchor_cooldown <value>
 crystal_cd, obsidian_cd and anchor_cd are used as timers
 ## Bot State / Bot target
-Xaniclebot uses a variable (bot state) and a flat (bot target) to control bot targeting and behaviour\
+Xaniclebot uses a variable (bot state) and a flag (bot target) to control bot targeting and behaviour\
 Bot States:\
 0.Sword PvP - only allows the bot to move forward and attack\
 1.Normal / idle - allows the bot to place obsidian, crystal and anchors, as well as to pearl and pearl flash\

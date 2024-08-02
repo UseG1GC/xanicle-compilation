@@ -71,6 +71,8 @@ Use to set the amount of totems the bot has access to:\
 ```/scoreboard players set xaniclebot bot_totems <value>```\
 Use to set the difficulty of the bot:\
 ```/function xanicle:presets/<preset>```\
+In order to spawn the bot:\
+```/function xanicle:spawnbot```\
 Presets:
  - Fish (canonically accurate ProperDiamond, LT5)
  - Xanicle (Plays similar to actual xanicle, roughly HT3 skill)
