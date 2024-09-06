@@ -1,1 +1,0 @@
-scoreboard players set @a[tag=bot] botState 2

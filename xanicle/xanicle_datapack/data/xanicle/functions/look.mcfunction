@@ -1,2 +1,0 @@
-execute at @a[tag=bot] at @p[tag=!bot,gamemode=!spectator] run player xanicleBot look at ~ ~1.6 ~
-execute at @a[tag=bot] at @p[tag=!bot,gamemode=!spectator] as @p if predicate xanicle:sneaking run player xanicleBot look at ~ ~1.4 ~

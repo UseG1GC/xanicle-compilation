@@ -1,2 +1,0 @@
-execute as @a[tag=bot,scores={dead=1..}] run function xanicle:end/win
-execute unless entity @a[tag=!bot,gamemode=!spectator,scores={dead=0}] if entity @a[tag=!bot,gamemode=!spectator] as @a[tag=bot] run function xanicle:end/lose
