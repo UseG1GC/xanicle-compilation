@@ -6,5 +6,6 @@ seq_length = 128
 
 dataset = Dataset(sequence_length=seq_length)
 model = LSTMModel(dataset=dataset)
+model.cuda()
 
 train_loop(dataset,model,seq_length=seq_length)
