@@ -28,5 +28,6 @@ scoreboard objectives add shield minecraft.custom:minecraft.damage_blocked_by_sh
 
 scoreboard players set xaniclebot bot_totems 15
 function xanicle:presets/normal
+function xanicle:enablehole
 
 gamerule commandBlockOutput false
