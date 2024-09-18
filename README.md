@@ -2,8 +2,6 @@
 A few (very bad) python projects.
 # Pytorch Text Generation
 Example of text generation using LSTMs and Transformers\
-\
-**G1GC's submission to Optimize (High school category)**
 ## Info
 Model trained on the ```wikitext-2``` dataset\
 Decoder only transformer
