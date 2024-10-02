@@ -22,8 +22,8 @@ tree = app_commands.CommandTree(client)
 timeout = None
 queues = {}
 
-bot = Fish("http://192.168.1.115:11434/api/chat", "You are a fish.")
-judge = Judge("http://192.168.1.115:11434/api/chat")
+bot = Fish("", "You are a fish.")
+judge = Judge("")
 
 Token = os.getenv('DISCORD_TOKEN')
 
