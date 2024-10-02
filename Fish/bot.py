@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from fish import *
 import json 
 import yt_dlp
+import wikipedia
 
 with open('themes.json', 'r') as file:
     themes = json.load(file) 
@@ -36,8 +37,8 @@ async def on_ready():
 @client.event
 async def on_message(message):
     author = message.author.mention
-    
-    if "<@417216848720035862>" in message.content:
+    print(author)
+    if "<@417216848720035862>" in message.content and message.author.id != 1199290199985901589:
         await message.delete()
         await message.channel.send(f"Don't disturb my fellow 🐟! {author}")
     
@@ -70,7 +71,7 @@ async def on_voice_state_update(member, before, after):
         print(f"Disconnecting from {voice_client.channel} as it is empty.")
         await voice_client.disconnect()
 
-    if str(member.id) in themes and voice_client and after.channel != None and after.channel:
+    if str(member.id) in themes:
         url = themes[str(member.id)]
         
         ffmpeg_options = {'options': '-vn'}
@@ -80,15 +81,17 @@ async def on_voice_state_update(member, before, after):
             song_info = ydl.extract_info(url, download=False)
 
         source = discord.FFmpegPCMAudio(song_info["url"], executable="ffmpeg", options=ffmpeg_options)
-        if voice_client.is_playing():
-            voice_client.pause()
-        voice_client.play(source)
-        print("PLAYING")
+
+        if voice_client and voice_client.is_connected():
+            voice_client.play(source)
+            print("PLAYING")
         
         with open('themes.json', 'r') as file:
             themes = json.load(file) 
-    elif(after.channel != None):
+    else:
         print(f"{member} is a USER WITHOUT THEME THAT HAS JOINED")
+        print(themes)
+        print(str(member.id) in themes)
 
 
 @tree.command(name='sync', description='Owner only')
@@ -101,7 +104,12 @@ async def sync(interaction):
 
 @tree.command(name='echo', description='Repeats what you say')
 async def echo(interaction: discord.Interaction, message: str):
-    await interaction.response.send_message(message)
+    person = interaction.user.mention
+    if "<@1199290199985901589>" in message:
+        await interaction.response.send_message(f"I might be a 🐟 but I'm not stupid, {person}")
+    else:
+        await interaction.response.send_message(message)
+        
 
 @tree.command(name='ping', description='Pong!')
 async def ping(interaction):
@@ -139,7 +147,7 @@ async def exit(interaction: discord.Interaction):
     
 
 @tree.command(name="speak", description="make 🐟 speak")
-async def search(interaction: discord.Interaction, speech: str, volume: float):
+async def speak(interaction: discord.Interaction, speech: str, volume: float):
     
     if interaction.user.voice is None:
         await interaction.response.send_message("You are not connected to a voice channel.")
@@ -260,5 +268,9 @@ async def stupidity(interaction: discord.Interaction,scenario : str):
 @tree.command(name="fight", description = "Start Fish AI's 1v1 with Mad AI")
 async def fight(interaction: discord.Interaction):
     await interaction.response.send_message(f"<@1199215459782893569> is a baldy mcbaldy")
+
+@tree.command(name="search", description = "Search up anything on wikipedia")
+async def search(interaction: discord.Interaction, item : str):
+    await interaction.response.send_message(wikipedia.summary(item))
 
 client.run(Token)
