@@ -1,0 +1,3 @@
+execute at @a[tag=bot] at @p[tag=!bot,gamemode=!spectator] at @e[tag=obby,limit=1,sort=nearest] positioned ~ ~0.5 ~ unless entity @e[type=end_crystal,distance=..0.5] run summon end_crystal ~ ~ ~ {ShowBottom:0b,Tags:["target"]}
+execute at @a[tag=bot] at @p[tag=!bot,gamemode=!spectator] at @e[tag=obby,limit=1,sort=nearest] run scoreboard players set @a[tag=bot] crystal_cd 0
+execute at @a[tag=bot] at @p[tag=!bot,gamemode=!spectator] at @e[tag=obby,limit=1,sort=nearest] run scoreboard players set @a[tag=bot] flat_cd 0

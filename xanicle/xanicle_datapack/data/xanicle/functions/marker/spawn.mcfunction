@@ -1,0 +1,2 @@
+fill ~-3 ~-0.75 ~-3 ~3 ~-5 ~3 minecraft:command_block{auto:1b,Command:"function xanicle:marker/obbycmd"} replace obsidian
+fill ~-2 ~-0.75 ~-2 ~2 ~-5 ~2 minecraft:command_block{auto:1b,Command:"function xanicle:marker/aircmd"} replace air

@@ -2,8 +2,6 @@
 A few (very bad) python projects.
 # Pytorch Text Generation
 Example of text generation using LSTMs and Transformers\
-\
-**G1GC's submission to Optimize (High school category)**
 ## Info
 Model trained on the ```wikitext-2``` dataset\
 Decoder only transformer
@@ -37,7 +35,7 @@ Mad AI has caused us to be 20 million dollars in debt pls donate
  - Rescue Mad AI from the Institution of the Clinically Deranged
  - Actually fix Mad AI
 #  🐟 Bot
-Me when 🐟 blows up ProperDiamond's gpu
+🐟 blows up ProperDiamond's gpu
 ## Overview of 🐟
  - Fisherman (🐟🐟🐟)
  - Text to speech
@@ -48,7 +46,7 @@ Me when 🐟 blows up ProperDiamond's gpu
  - deletes bad messages (Don't send that again!)
  - Deletes messages that ping ProperDiamond (Don't disturb my fellow 🐟!)
 ## Info
- - API calls to 🐟hq
+ - API calls to 🐟
  - Discord.py
 ## To-do
  - Make 🐟 slightly less schizoprenic
@@ -61,14 +59,34 @@ a computer (very important)\
 working internet (also very important)\
 python3.9+
 # XANICLE
-An AI that we should hopefully train to play crystal pvp\
+A ~~AI~~ bot that we should hopefully ~~train~~ hard code to play crystal pvp\
 \
 Xanicle worst bot ngl
 ## Info
-Do something idk
+Xaniclebot is HT1\
+Too bad xanicle is LT5\
+Use to set the amount of totems the bot has access to:\
+```/scoreboard players set xaniclebot bot_totems <value>```\
+Use to set the difficulty of the bot:\
+```/function xanicle:presets/<preset>```\
+In order to spawn the bot:\
+```/function xanicle:spawnbot```\
+Presets:
+ - Fish (canonically accurate ProperDiamond, LT5)
+ - Xanicle (Plays similar to actual xanicle, roughly HT3 skill)
+ - Mwasher (Banned for CWing)
+ - Normal (Generic / "normal" playstyle, roughly LT2/HT2 skill)
+ - Evantii (Plays similar to evantii, roughtly HT1 skill)
+ - godxanicle / HT0 (Max setting)
+## Requirements
+ - Fabric API
+ - Carpet Mod
 ## To-do
- - Hitcrystal idk
- - pathfinding
- - anchor spam
- - toteming
- - literally everything
+ - [x] Hitcrystal idk
+ - [ ] pathfinding
+ - [x] anchor spam
+ - [x] toteming
+ - [x] pearling
+ - [x] sword gameplay
+ - [x] dtap
+ - [ ] drain gameplay

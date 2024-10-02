@@ -1,0 +1,4 @@
+execute at @a[tag=bot] unless entity @e[distance=..3,tag=obby] at @p[tag=!bot,gamemode=!spectator] at @e[tag=obby_pos,limit=1,sort=nearest] run setblock ~ ~ ~ obsidian
+execute at @a[tag=bot] unless entity @e[distance=..3,tag=obby] at @p[tag=!bot,gamemode=!spectator] at @e[tag=obby_pos,limit=1,sort=nearest] run scoreboard players set @a[tag=bot] obby_cd 0
+execute at @a[tag=bot] unless entity @e[distance=..3,tag=obby] at @p[tag=!bot,gamemode=!spectator] at @e[tag=obby_pos,limit=1,sort=nearest] run scoreboard players set @a[tag=bot] flat_cd 0
+execute at @a[tag=bot] unless entity @e[distance=..3,tag=obby] at @p[tag=!bot,gamemode=!spectator] run tag @e[tag=obby_pos,limit=1,sort=nearest] add obby
