@@ -5,7 +5,6 @@ import numpy as np
 import evaluate
 
 import os
-os.environ["HUGGINGFACE_HUB_TOKEN"] = "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"
 
 dataset = load_dataset("wikitext", "wikitext-103-v1")
 print(dataset["train"][100])
