@@ -58,35 +58,3 @@ Mad AI has caused us to be 20 million dollars in debt pls donate
 a computer (very important)\
 working internet (also very important)\
 python3.9+
-# XANICLE
-A ~~AI~~ bot that we should hopefully ~~train~~ hard code to play crystal pvp\
-\
-Xanicle worst bot ngl
-## Info
-Xaniclebot is HT1\
-Too bad xanicle is LT5\
-Use to set the amount of totems the bot has access to:\
-```/scoreboard players set xaniclebot bot_totems <value>```\
-Use to set the difficulty of the bot:\
-```/function xanicle:presets/<preset>```\
-In order to spawn the bot:\
-```/function xanicle:spawnbot```\
-Presets:
- - Fish (canonically accurate ProperDiamond, LT5)
- - Xanicle (Plays similar to actual xanicle, roughly HT3 skill)
- - Mwasher (Banned for CWing)
- - Normal (Generic / "normal" playstyle, roughly LT2/HT2 skill)
- - Evantii (Plays similar to evantii, roughtly HT1 skill)
- - godxanicle / HT0 (Max setting)
-## Requirements
- - Fabric API
- - Carpet Mod
-## To-do
- - [x] Hitcrystal idk
- - [ ] pathfinding
- - [x] anchor spam
- - [x] toteming
- - [x] pearling
- - [x] sword gameplay
- - [x] dtap
- - [ ] drain gameplay
